@@ -23,6 +23,15 @@ Resources:
             CompatibleRuntimes:
                 - nodejs16.x
 
+    CodeLayer:
+        Type: AWS::Serverless::LayerVersion
+        Properties:
+            LayerName: Layer
+            Description: Axios NPM package.
+            ContentUri: "src/layers/code/"
+            CompatibleRuntimes:
+                - nodejs16.x
+
     HelloWorldFunction:
         Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
         Properties:
@@ -34,11 +43,40 @@ Resources:
             Tracing: Active
             Layers:
                 - !Ref DepsLayer
+                - !Ref CodeLayer
             Environment:
                 Variables:
                     POWERTOOLS_SERVICE_NAME: helloWorld
                     POWERTOOLS_METRICS_NAMESPACE: layer-ts
                     LOG_LEVEL: INFO
+            Events:
+                HelloWorld:
+                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+                    Properties:
+                        Path: /hello
+                        Method: get
+        Metadata: # Manage esbuild properties
+            BuildMethod: esbuild
+            BuildProperties:
+                Minify: true
+                Target: "es2020"
+                # Sourcemap: true # Enabling source maps will create the required NODE_OPTIONS environment variables on your lambda function during sam build
+                EntryPoints:
+                    - app.ts
+                External:
+                    - "axios"
+                    - "commands"
+    ByeWorldFunction:
+        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+        Properties:
+            CodeUri: src/functions/bye-world/
+            Handler: app.lambdaHandler
+            Runtime: nodejs16.x
+            Architectures:
+                - x86_64
+            Tracing: Active
+            Layers:
+                - !Ref DepsLayer
             Events:
                 HelloWorld:
                     Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
