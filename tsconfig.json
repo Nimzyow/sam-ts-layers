@@ -9,7 +9,10 @@
         "moduleResolution": "node",
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "paths": {
+            "commands": ["./src/layers/code/nodejs/commands.ts"]
+        }
     },
     "exclude": ["node_modules", "**/*.test.ts", "**/*/node_modules"],
     "include": ["src/**/*.ts"]

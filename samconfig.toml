@@ -2,7 +2,7 @@ version = 0.1
 [default]
 
 [default.global.parameters]
-stack_name = "ripple-contacts"
+stack_name = "layer-experiment"
 
 [default.sync.parameters]
 profile = "ripple_sandbox"

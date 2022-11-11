@@ -26,8 +26,8 @@ Resources:
     CodeLayer:
         Type: AWS::Serverless::LayerVersion
         Properties:
-            LayerName: Layer
-            Description: Axios NPM package.
+            LayerName: CommonLayer
+            Description: Common code layer.
             ContentUri: "src/layers/code/"
             CompatibleRuntimes:
                 - nodejs16.x
@@ -77,12 +77,7 @@ Resources:
             Tracing: Active
             Layers:
                 - !Ref DepsLayer
-            Events:
-                HelloWorld:
-                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-                    Properties:
-                        Path: /hello
-                        Method: get
+                - !Ref CodeLayer
         Metadata: # Manage esbuild properties
             BuildMethod: esbuild
             BuildProperties:
@@ -93,6 +88,7 @@ Resources:
                     - app.ts
                 External:
                     - "axios"
+                    - "commands"
 
 Outputs:
     # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
