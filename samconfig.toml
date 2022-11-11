@@ -1,0 +1,22 @@
+version = 0.1
+[default]
+
+[default.global.parameters]
+stack_name = "ripple-contacts"
+
+[default.deploy]
+
+[default.deploy.parameters]
+stack_name = "ripple-contacts"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-myg1esejnrij"
+s3_prefix = "ripple-contacts"
+region = "eu-west-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+
+[default.sync.parameters]
+profile = "ripple_sandbox"
+
+[default.logs.parameters]
+profile = "ripple_sandbox"
