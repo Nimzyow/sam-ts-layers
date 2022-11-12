@@ -1,5 +1,5 @@
 import axios from "axios"
-import { subtraction } from "commands"
+import { subtraction } from "/opt/nodejs/commands"
 
 export const lambdaHandler = async () => {
     console.log("in bye handler")

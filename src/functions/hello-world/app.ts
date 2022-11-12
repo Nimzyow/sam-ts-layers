@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import { addition } from "commands"
+import { addition } from "/opt/nodejs/commands"
 
 export const lambdaHandler = async () => {
     console.log("in hello handler")
