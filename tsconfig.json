@@ -11,9 +11,9 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "paths": {
-            "/opt/nodejs/commands": ["./src/layers/code/nodejs/commands"]
+            "/opt/nodejs": ["./src/layers/codeLayer"]
         }
     },
     "exclude": ["node_modules", "**/*.test.ts", "**/*/node_modules"],
-    "include": ["src/**/*.ts", "src/layers/code/nodejs/commands/index.js", "nodejs/**/*.ts"]
+    "include": ["src/**/*.ts", "src/layers/codeLayer/nodejs/commands/index.js", "nodejs/**/*.ts"]
 }
