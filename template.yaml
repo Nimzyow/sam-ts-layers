@@ -43,7 +43,7 @@ Resources:
             Tracing: Active
             Layers:
                 - !Ref DepsLayer
-                - !Ref CodeLayer
+                # - !Ref CodeLayer
             Environment:
                 Variables:
                     POWERTOOLS_SERVICE_NAME: helloWorld
@@ -65,7 +65,7 @@ Resources:
                     - app.ts
                 External:
                     - "axios"
-                    - "/opt/nodejs/commands"
+                    # - "/opt/nodejs/commands"
     ByeWorldFunction:
         Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
         Properties:
@@ -77,7 +77,7 @@ Resources:
             Tracing: Active
             Layers:
                 - !Ref DepsLayer
-                - !Ref CodeLayer
+                # - !Ref CodeLayer
         Metadata: # Manage esbuild properties
             BuildMethod: esbuild
             BuildProperties:
@@ -88,7 +88,7 @@ Resources:
                     - app.ts
                 External:
                     - "axios"
-                    - "/opt/nodejs/commands"
+                    # - "/opt/nodejs/commands"
 
 Outputs:
     # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
